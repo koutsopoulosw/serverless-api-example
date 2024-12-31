@@ -1,0 +1,35 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  getBaristaTeamInstance(round: Int!): BaristaTeamInstance
+}
+
+type Mutation {
+  addBaristaTeamInstance(baristaTeamInstanceInput: BaristaTeamInstanceInput!): BaristaTeamInstance
+}
+
+# TODO: comment - turn this into a Input prolly
+type BaristaInstance {
+  id: ID!
+  currentHealth: Int!
+  currentDmg: Int!
+}
+
+type BaristaTeamInstance {
+  id: ID!
+  round: Int!
+  baristas: [BaristaInstance]
+}
+
+input BaristaInstanceInput {
+    currentHealth: Int!
+    currentDmg: Int!
+}
+
+input BaristaTeamInstanceInput {
+  round: Int!
+  team: [BaristaInstanceInput]
+}
